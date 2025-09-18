@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/generate-logo"
+  to = "/.netlify/functions/generateLogo"
+  status = 200
