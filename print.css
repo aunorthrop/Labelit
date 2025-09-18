@@ -1,0 +1,13 @@
+/* Print layout tweaks: remove chrome, pack labels edge-to-edge when possible */
+@page { margin: 0.25in; }
+@media print {
+  body { background: #fff }
+  .site-header, .site-footer, .card h2, .hint, #savedList, #clearSavedBtn { display:none !important }
+  .card { border:none; box-shadow:none; padding:0 }
+  .container { padding:0; }
+  .sheet { gap: 0.125in; }
+  .label { border: 1px solid #000; }
+  /* Template-specific sizing approximations; you may adjust printer scaling for perfect alignment */
+  .sheet.avery5160 .label { height: 1in; }
+  .sheet.avery5263 .label { height: 2in; }
+}
