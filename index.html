@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Fridge Labels</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="print.css" media="print">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Fridge Labels</h1>
+    <p>Type it. Set a date. Print it. Eat on time.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Create a label</h2>
+      <form id="labelForm">
+        <div class="grid">
+          <label>
+            What is it?
+            <input id="itemName" type="text" placeholder="e.g., Chili leftovers" required>
+          </label>
+          <label>
+            Owner / Name on it (optional)
+            <input id="ownerName" type="text" placeholder="e.g., Austin">
+          </label>
+        </div>
+
+        <div class="grid">
+          <fieldset>
+            <legend>Expiry</legend>
+            <div class="row">
+              <label class="inline">
+                <input type="radio" name="expiryMode" value="days" checked>
+                In N days
+              </label>
+              <input id="daysUntil" type="number" min="0" step="1" value="3" class="short">
+            </div>
+            <div class="row">
+              <label class="inline">
+                <input type="radio" name="expiryMode" value="date">
+                On date
+              </label>
+              <input id="expiryDate" type="date" class="medium">
+            </div>
+          </fieldset>
+
+          <label>
+            Notes (optional)
+            <input id="notes" type="text" placeholder="e.g., No onions; reheat to 165°F">
+          </label>
+        </div>
+
+        <div class="grid">
+          <label>
+            Icon style
+            <select id="iconStyle">
+              <option value="emoji">Built-in emoji</option>
+              <option value="mono">Simple mono icon</option>
+              <option value="ai">AI-generated (OpenAI)</option>
+            </select>
+          </label>
+
+          <label id="emojiPickerWrap">
+            Emoji (if using Built-in emoji)
+            <input id="emoji" type="text" placeholder="🍲 🥪 🧀" maxlength="3">
+          </label>
+        </div>
+
+        <div class="row">
+          <button type="button" id="genAiIconBtn" class="secondary">Generate AI Icon</button>
+          <span id="aiStatus" class="status"></span>
+        </div>
+
+        <div class="row">
+          <button type="submit" class="primary">Add to sheet</button>
+          <button type="button" id="printBtn">Print</button>
+          <button type="button" id="clearSheetBtn" class="danger">Clear sheet</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Print settings</h2>
+      <div class="grid">
+        <label>
+          Template
+          <select id="template">
+            <option value="plain">Plain grid (3 columns)</option>
+            <option value="avery5160">Avery 5160/8160 (1" x 2-5/8")</option>
+            <option value="avery5263">Avery 5263 (2" x 4")</option>
+          </select>
+        </label>
+        <label>
+          Include QR (re-open on phone)
+          <input id="includeQR" type="checkbox">
+        </label>
+      </div>
+      <p class="hint">Tip: In the system print dialog, disable headers/footers and set margins to “None” for best alignment.</p>
+    </section>
+
+    <section class="card">
+      <h2>Sheet preview</h2>
+      <div id="sheet" class="sheet plain"></div>
+    </section>
+
+    <section class="card">
+      <h2>Saved items (local)</h2>
+      <div id="savedList" class="saved"></div>
+      <button id="clearSavedBtn" class="danger small">Clear saved</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>Fridge Labels • No accounts, no tracking, everything stays on your device.</small>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
